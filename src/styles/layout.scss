@@ -1,0 +1,313 @@
+@import 'variables';
+@import 'mixins';
+
+// Page Layout
+.page {
+  padding-top: 80px; // Account for fixed navbar
+  min-height: 100vh;
+}
+
+.page-hero {
+  background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+  color: $white;
+  padding: $spacing-20 0 $spacing-16;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='m0 40l40-40h-40z'/%3E%3Cpath d='m0 40l40-40h-40z'/%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.3;
+  }
+  
+  .page-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 $spacing-4;
+    
+    .page-title {
+      font-size: $font-size-5xl;
+      font-weight: 700;
+      margin-bottom: $spacing-4;
+      
+      @include mobile {
+        font-size: $font-size-3xl;
+      }
+    }
+    
+    .page-subtitle {
+      font-size: $font-size-xl;
+      opacity: 0.9;
+      font-weight: 300;
+      
+      @include mobile {
+        font-size: $font-size-lg;
+      }
+    }
+  }
+  
+  @include mobile {
+    padding: $spacing-16 0 $spacing-12;
+  }
+}
+
+// Content Sections
+.content-section {
+  padding: $spacing-16 0;
+  
+  &.bg-white {
+    background: $white;
+  }
+  
+  &.bg-gray {
+    background: $gray-50;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: $spacing-12;
+    
+    .section-title {
+      @include heading-2;
+      margin-bottom: $spacing-4;
+    }
+    
+    .section-subtitle {
+      @include body-text;
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: $font-size-lg;
+    }
+  }
+  
+  @include mobile {
+    padding: $spacing-12 0;
+    
+    .section-header {
+      margin-bottom: $spacing-8;
+    }
+  }
+}
+
+// Two Column Layout
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-12;
+  align-items: center;
+  
+  @include tablet {
+    gap: $spacing-8;
+  }
+  
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $spacing-6;
+  }
+  
+  .column-content {
+    .column-title {
+      @include heading-2;
+      margin-bottom: $spacing-6;
+    }
+    
+    .column-text {
+      @include body-text;
+      margin-bottom: $spacing-4;
+      font-size: $font-size-lg;
+    }
+    
+    .column-list {
+      list-style: none;
+      margin-bottom: $spacing-6;
+      
+      li {
+        @include body-text;
+        padding: $spacing-2 0;
+        position: relative;
+        padding-left: $spacing-6;
+        
+        &::before {
+          content: '→';
+          position: absolute;
+          left: 0;
+          color: $primary-color;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  
+  .column-image {
+    text-align: center;
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: $radius-xl;
+      box-shadow: $shadow-xl;
+    }
+  }
+}
+
+// Team Grid
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: $spacing-8;
+  
+  .team-card {
+    @include card;
+    text-align: center;
+    
+    .team-image {
+      width: 120px;
+      height: 120px;
+      border-radius: $radius-full;
+      margin: 0 auto $spacing-4;
+      background: linear-gradient(135deg, $primary-color, $secondary-color);
+      @include flex-center;
+      
+      .team-avatar {
+        width: 80px;
+        height: 80px;
+        color: $white;
+      }
+    }
+    
+    .team-name {
+      @include heading-3;
+      margin-bottom: $spacing-2;
+    }
+    
+    .team-role {
+      color: $primary-color;
+      font-weight: 600;
+      margin-bottom: $spacing-3;
+    }
+    
+    .team-bio {
+      @include small-text;
+    }
+  }
+}
+
+// Testimonials
+.testimonials {
+  background: $white;
+  padding: $spacing-20 0;
+  
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: $spacing-8;
+  }
+  
+  .testimonial-card {
+    @include card;
+    position: relative;
+    
+    .testimonial-quote {
+      font-size: $font-size-lg;
+      font-style: italic;
+      margin-bottom: $spacing-6;
+      color: $gray-700;
+      line-height: 1.7;
+    }
+    
+    .testimonial-author {
+      @include flex-center;
+      gap: $spacing-4;
+      
+      .author-avatar {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, $primary-color, $secondary-color);
+        border-radius: $radius-full;
+        @include flex-center;
+        color: $white;
+        font-weight: 600;
+      }
+      
+      .author-info {
+        .author-name {
+          font-weight: 600;
+          color: $gray-800;
+        }
+        
+        .author-title {
+          @include small-text;
+        }
+      }
+    }
+    
+    &::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      left: $spacing-6;
+      font-size: 4rem;
+      color: $primary-color;
+      opacity: 0.3;
+      font-family: serif;
+    }
+  }
+}
+
+// Call to Action
+.cta-section {
+  background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+  color: $white;
+  text-align: center;
+  padding: $spacing-20 0;
+  
+  .cta-title {
+    font-size: $font-size-4xl;
+    font-weight: 700;
+    margin-bottom: $spacing-4;
+    
+    @include mobile {
+      font-size: $font-size-2xl;
+    }
+  }
+  
+  .cta-subtitle {
+    font-size: $font-size-xl;
+    margin-bottom: $spacing-8;
+    opacity: 0.9;
+    font-weight: 300;
+    
+    @include mobile {
+      font-size: $font-size-lg;
+      margin-bottom: $spacing-6;
+    }
+  }
+  
+  .cta-button {
+    @include button-base;
+    background: $white;
+    color: $primary-color;
+    font-size: $font-size-lg;
+    padding: $spacing-4 $spacing-10;
+    font-weight: 700;
+    
+    &:hover {
+      background: $gray-100;
+      transform: translateY(-2px);
+      box-shadow: $shadow-xl;
+    }
+    
+    @include mobile {
+      padding: $spacing-3 $spacing-8;
+      font-size: $font-size-base;
+    }
+  }
+}

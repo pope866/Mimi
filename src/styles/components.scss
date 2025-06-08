@@ -1,0 +1,408 @@
+@import 'variables';
+@import 'mixins';
+
+// Navigation Styles
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: $spacing-4 0;
+  transition: all $transition-normal;
+  
+  &.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: $shadow-lg;
+  }
+  
+  .nav-container {
+    @include flex-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $spacing-4;
+    
+    @include tablet {
+      padding: 0 $spacing-6;
+    }
+    
+    @include desktop {
+      padding: 0 $spacing-8;
+    }
+  }
+  
+  .nav-logo {
+    @include flex-center;
+    gap: $spacing-2;
+    font-weight: 700;
+    font-size: $font-size-xl;
+    color: $primary-color;
+    text-decoration: none;
+    
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      color: $secondary-color;
+    }
+  }
+  
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: $spacing-8;
+    list-style: none;
+    
+    @include mobile {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      flex-direction: column;
+      padding: $spacing-6;
+      gap: $spacing-4;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      transform: translateY(-100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: all $transition-normal;
+      
+      &.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+  
+  .nav-link {
+    color: $gray-700;
+    text-decoration: none;
+    font-weight: 500;
+    padding: $spacing-2 $spacing-4;
+    border-radius: $radius-lg;
+    transition: all $transition-normal;
+    
+    &:hover,
+    &.active {
+      color: $primary-color;
+      background: rgba($primary-color, 0.1);
+    }
+    
+    @include mobile {
+      width: 100%;
+      text-align: center;
+      padding: $spacing-3 $spacing-4;
+    }
+  }
+  
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: $gray-700;
+    cursor: pointer;
+    padding: $spacing-2;
+    
+    @include mobile {
+      display: block;
+    }
+    
+    .hamburger {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+// Hero Section
+.hero {
+  min-height: 100vh;
+  @include flex-center;
+  text-align: center;
+  background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+  color: $white;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.3;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 $spacing-4;
+    
+    .hero-title {
+      font-size: $font-size-6xl;
+      font-weight: 800;
+      margin-bottom: $spacing-6;
+      line-height: 1.1;
+      
+      @include mobile {
+        font-size: $font-size-4xl;
+        margin-bottom: $spacing-4;
+      }
+    }
+    
+    .hero-subtitle {
+      font-size: $font-size-xl;
+      margin-bottom: $spacing-8;
+      opacity: 0.9;
+      font-weight: 300;
+      
+      @include mobile {
+        font-size: $font-size-lg;
+        margin-bottom: $spacing-6;
+      }
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: $spacing-4;
+      justify-content: center;
+      flex-wrap: wrap;
+      
+      .btn {
+        padding: $spacing-4 $spacing-8;
+        font-size: $font-size-lg;
+        font-weight: 600;
+        
+        @include mobile {
+          padding: $spacing-3 $spacing-6;
+          font-size: $font-size-base;
+        }
+      }
+      
+      .btn-white {
+        background: $white;
+        color: $primary-color;
+        border: none;
+        
+        &:hover {
+          background: $gray-100;
+          transform: translateY(-2px);
+        }
+      }
+      
+      .btn-outline-white {
+        background: transparent;
+        color: $white;
+        border: 2px solid $white;
+        
+        &:hover {
+          background: $white;
+          color: $primary-color;
+        }
+      }
+    }
+  }
+}
+
+// Feature Cards
+.feature-card {
+  @include card;
+  text-align: center;
+  
+  .feature-icon {
+    width: 64px;
+    height: 64px;
+    color: $primary-color;
+    margin: 0 auto $spacing-4;
+    padding: $spacing-4;
+    background: linear-gradient(135deg, rgba($primary-color, 0.1), rgba($secondary-color, 0.1));
+    border-radius: $radius-full;
+  }
+  
+  .feature-title {
+    @include heading-3;
+    margin-bottom: $spacing-3;
+  }
+  
+  .feature-description {
+    @include body-text;
+  }
+}
+
+// Service Cards
+.service-card {
+  @include card;
+  border-top: 4px solid $primary-color;
+  
+  &:nth-child(2) {
+    border-top-color: $secondary-color;
+  }
+  
+  &:nth-child(3) {
+    border-top-color: $accent-color;
+  }
+  
+  .service-title {
+    @include heading-3;
+    margin-bottom: $spacing-4;
+    color: $primary-color;
+  }
+  
+  .service-description {
+    @include body-text;
+    margin-bottom: $spacing-4;
+  }
+  
+  .service-features {
+    list-style: none;
+    
+    li {
+      @include small-text;
+      padding: $spacing-1 0;
+      position: relative;
+      padding-left: $spacing-6;
+      
+      &::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: $success-color;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+// Contact Form
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  
+  .form-group {
+    margin-bottom: $spacing-6;
+    
+    label {
+      display: block;
+      margin-bottom: $spacing-2;
+      font-weight: 600;
+      color: $gray-700;
+    }
+    
+    input,
+    textarea {
+      width: 100%;
+      padding: $spacing-4;
+      border: 2px solid $gray-200;
+      border-radius: $radius-lg;
+      font-size: $font-size-base;
+      transition: all $transition-normal;
+      
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+      }
+    }
+    
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+  }
+  
+  .form-submit {
+    width: 100%;
+    @include button-primary;
+    font-size: $font-size-lg;
+    padding: $spacing-4 $spacing-6;
+  }
+}
+
+// Stats Section
+.stats {
+  background: $white;
+  padding: $spacing-16 0;
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: $spacing-8;
+    text-align: center;
+  }
+  
+  .stat-item {
+    .stat-number {
+      font-size: $font-size-4xl;
+      font-weight: 700;
+      color: $primary-color;
+      margin-bottom: $spacing-2;
+      
+      @include mobile {
+        font-size: $font-size-3xl;
+      }
+    }
+    
+    .stat-label {
+      @include body-text;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+// Footer
+.footer {
+  background: $gray-900;
+  color: $gray-300;
+  padding: $spacing-16 0 $spacing-8;
+  
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: $spacing-8;
+    margin-bottom: $spacing-8;
+  }
+  
+  .footer-section {
+    .footer-title {
+      color: $white;
+      font-weight: 600;
+      margin-bottom: $spacing-4;
+    }
+    
+    .footer-links {
+      list-style: none;
+      
+      li {
+        margin-bottom: $spacing-2;
+        
+        a {
+          color: $gray-400;
+          text-decoration: none;
+          transition: color $transition-normal;
+          
+          &:hover {
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    padding-top: $spacing-8;
+    border-top: 1px solid $gray-700;
+    color: $gray-500;
+  }
+}

@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap');
+@import 'variables';
+@import 'mixins';
+
+// Global Styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family-primary;
+  background: linear-gradient(135deg, $gray-50 0%, $gray-100 100%);
+  color: $gray-900;
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Layout Utilities
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-4;
+  
+  @include tablet {
+    padding: 0 $spacing-6;
+  }
+  
+  @include desktop {
+    padding: 0 $spacing-8;
+  }
+}
+
+.section {
+  padding: $spacing-16 0;
+  
+  @include mobile {
+    padding: $spacing-12 0;
+  }
+}
+
+// Typography Classes
+.heading-1 {
+  @include heading-1;
+}
+
+.heading-2 {
+  @include heading-2;
+}
+
+.heading-3 {
+  @include heading-3;
+}
+
+.body-text {
+  @include body-text;
+}
+
+.small-text {
+  @include small-text;
+}
+
+// Button Classes
+.btn-primary {
+  @include button-primary;
+}
+
+.btn-secondary {
+  @include button-secondary;
+}
+
+.btn-outline {
+  @include button-outline;
+}
+
+// Card Classes
+.card {
+  @include card;
+}
+
+.glass-card {
+  @include glass-card;
+}
+
+// Utility Classes
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.mb-4 {
+  margin-bottom: $spacing-4;
+}
+
+.mb-6 {
+  margin-bottom: $spacing-6;
+}
+
+.mb-8 {
+  margin-bottom: $spacing-8;
+}
+
+.mt-4 {
+  margin-top: $spacing-4;
+}
+
+.mt-6 {
+  margin-top: $spacing-6;
+}
+
+.mt-8 {
+  margin-top: $spacing-8;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, $primary-color, $secondary-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Grid System
+.grid {
+  display: grid;
+  gap: $spacing-6;
+  
+  &.grid-2 {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  &.grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  
+  &.grid-4 {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+// Responsive Image
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+  border-radius: $radius-lg;
+}
