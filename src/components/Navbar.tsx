@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
       <div className="nav-container">
         <Link to="/" className="nav-logo" onClick={closeMenu}>
           <Zap className="logo-icon" />
-          <span>ModernWeb</span>
+          <span>PopeWeb</span>
         </Link>
         
         <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
