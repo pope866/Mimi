@@ -83,7 +83,7 @@ const Contact: React.FC = () => {
                 className="btn-outline"
                 style={{ marginTop: '1rem' }}
               >
-                +1 (555) 123-4567
+                +254 (704) 805-860
               </a>
             </div>
             
