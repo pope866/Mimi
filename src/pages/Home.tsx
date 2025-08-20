@@ -9,7 +9,7 @@ const Home: React.FC = () => {
       <section className="hero">
         <div className="hero-content animate-fade-in">
           <h1 className="hero-title">
-            Build Amazing Web Experiences
+            Build Amazing Web Experiences by nershie
           </h1>
           <p className="hero-subtitle">
             We create stunning, modern websites that drive results and engage your audience
